@@ -45,7 +45,8 @@ SET SCHEMA 'chinook';
 -- 		   ,'USA',12345,'9043168012',12345,'nospam@spampls.com'),(10,'Home','Kenny','Shoulder Honcho',null,TIMESTAMP '1996-08-07 00:00:00', now(),'123 Ketchup drive','Condominant','Fl'
 -- 		   ,'USA',12345,'9043169999',12345,'try2spam@spampls.com');
 -- -- Task – Insert two new records into Customer table
--- INSERT INTO customer()
+-- INSERT INTO customer(customerid,firstname,lastname,email) VALUES (101,'real','human','real@email.com');
+-- INSERT INTO customer(customerid,firstname,lastname,email) VALUES (102,'also','human','reel@email.com');
 
 -- -- 2.4 UPDATE
 -- -- Task – Update Aaron Mitchell in Customer table to Robert Walter
@@ -219,21 +220,28 @@ SET SCHEMA 'chinook';
 -- -- 6.0 Triggers
 -- -- In this section you will create various kinds of triggers that work when certain DML statements are executed on a table.
 -- --6.1 AFTER/FOR
+-- --Dummy function for the triggers to call
+-- CREATE OR REPLACE FUNCTION foo_trig_funct
+-- RETURN TRIGGER as $$
+-- BEGIN
+	-- RETURN OLD;
+-- END;
+-- $$ LANGUAGE plpgsql;
 -- -- Task - Create an after insert trigger on the employee table fired after a new record is inserted into the table.
-CREATE TRIGGER after_insert_trig
-	AFTER INSERT ON employee
-	FOR EACH ROW
-	EXECUTE PROCEDURE foo_trig_funct();
+-- CREATE TRIGGER after_insert_trig
+	-- AFTER INSERT ON employee
+	-- FOR EACH ROW
+	-- EXECUTE PROCEDURE foo_trig_funct();
 -- -- Task – Create an after update trigger on the album table that fires after a row is inserted in the table
-CREATE TRIGGER after_update_trig
-	AFTER INSERT ON album
-	FOR EACH ROW
-	EXECUTE PROCEDURE foo_trig_funct();
+-- CREATE TRIGGER after_update_trig
+	-- AFTER INSERT ON album
+	-- FOR EACH ROW
+	-- EXECUTE PROCEDURE foo_trig_funct();
 -- --Task – Create an after delete trigger on the customer table that fires after a row is deleted from the table.
-CREATE TRIGGER after_delete_trig
-	AFTER DELETE ON employee
-	FOR EACH ROW
-	EXECUTE PROCEDURE foo_trig_funct();
+-- CREATE TRIGGER after_delete_trig
+	-- AFTER DELETE ON employee
+	-- FOR EACH ROW
+	-- EXECUTE PROCEDURE foo_trig_funct();
 
 -- --6.2 INSTEAD OF
 -- --Task – Create an instead of trigger that restricts the deletion of any invoice that is priced over 50 dollars.
